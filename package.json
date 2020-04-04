@@ -7,8 +7,11 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@syncfusion/ej2-vue-documenteditor": "^18.1.42",
     "core-js": "^3.6.4",
+    "css-loader": "^3.4.2",
     "vue": "^2.6.11",
+    "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.1.5",
     "vuex": "^3.1.2"
   },
@@ -17,7 +20,6 @@
     "@vue/cli-plugin-router": "^4.2.0",
     "@vue/cli-plugin-vuex": "^4.2.0",
     "@vue/cli-service": "^4.2.0",
-    "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
