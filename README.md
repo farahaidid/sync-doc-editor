@@ -1,4 +1,4 @@
-# sync-doc-editor
+# test
 
 ## Project setup
 ```
