@@ -1,25 +1,24 @@
 <template>
   <div id="app">
-    <ejs-documenteditorcontainer></ejs-documenteditorcontainer>
+    <ejs-documenteditorcontainer ref='documenteditor' style='height:600px;' id='container' :enableToolbar='true'></ejs-documenteditorcontainer>
   </div>
 </template>
-
 <script>
 import Vue from 'vue';
-import { DocumentEditorContainerPlugin } from '@syncfusion/ej2-vue-documenteditor';
+import { DocumentEditorContainerPlugin, DocumentEditorContainerComponent,Toolbar} from '@syncfusion/ej2-vue-documenteditor';
 
 Vue.use(DocumentEditorContainerPlugin);
-export default {
 
-  data () {
+export default {
+  data() {
     return {
-    }
+    };
   },
-  
+  provide: {
+    DocumentEditorContainer: [Toolbar]
+  }
 }
 </script>
-
 <style>
-
-@import "../node_modules/@syncfusion/ej2-vue-documenteditor/styles/material.css";
+ @import "../node_modules/@syncfusion/ej2-vue-documenteditor/styles/material.css";
 </style>
