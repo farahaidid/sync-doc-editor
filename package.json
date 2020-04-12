@@ -7,12 +7,26 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@syncfusion/ej2-vue-documenteditor": "^18.1.42",
     "core-js": "^3.6.4",
     "css-loader": "^3.4.2",
     "vue": "^2.6.11",
+    "vue-global-var": "^1.0.0",
     "vue-router": "^3.1.5",
-    "vuex": "^3.1.2"
+    "vuex": "^3.1.2",
+    "vuesax": "2.0.49",
+    "@syncfusion/ej2-base": "16.2.50",
+    "@syncfusion/ej2-data": "16.2.52",
+    "@syncfusion/ej2-lists": "16.2.50",
+    "@syncfusion/ej2-buttons": "16.2.50",
+    "@syncfusion/ej2-vue-lists": "16.2.50",
+    "@syncfusion/ej2-vue-inputs": "16.2.53",
+    "@syncfusion/ej2-vue-popups": "16.2.52",
+    "@syncfusion/ej2-vue-buttons": "16.2.50",
+    "@syncfusion/ej2-vue-dropdowns": "16.2.50",
+    "@syncfusion/ej2-documenteditor": "16.2.50",
+    "@syncfusion/ej2-vue-navigations": "16.2.50",
+    "@syncfusion/ej2-vue-splitbuttons": "16.2.50",
+    "@syncfusion/ej2-vue-documenteditor": "16.2.50"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",

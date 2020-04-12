@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/taha/Documents/CA/sync-doc-editor/SfdtConverterAPI/SfdtConverterAPI.csproj": {}
+  },
+  "projects": {
+    "/Users/taha/Documents/CA/sync-doc-editor/SfdtConverterAPI/SfdtConverterAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/taha/Documents/CA/sync-doc-editor/SfdtConverterAPI/SfdtConverterAPI.csproj",
+        "projectName": "SfdtConverterAPI",
+        "projectPath": "/Users/taha/Documents/CA/sync-doc-editor/SfdtConverterAPI/SfdtConverterAPI.csproj",
+        "packagesPath": "/Users/taha/.nuget/packages/",
+        "outputPath": "/Users/taha/Documents/CA/sync-doc-editor/SfdtConverterAPI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/taha/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Syncfusion.EJ2.WordEditor.AspNet.Core": {
+              "target": "Package",
+              "version": "[18.1.0.43, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
