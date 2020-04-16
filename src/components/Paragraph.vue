@@ -223,7 +223,8 @@ export default {
         },
         updateStyleNames: function () {
             this.styleName = !isNullOrUndefined((this.$refs.stylesdropdown).itemData) ? (this.$refs.stylesdropdown).itemData.StyleName : undefined;
-            this.$refs.stylesdropdown.dataSource = this.constructStyleDropItems(window.documenteditor.ej2Instances.getStyles('Paragraph'));
+            // this.$refs.stylesdropdown.dataSource = this.constructStyleDropItems(window.documenteditor.ej2Instances.getStyles('Paragraph'));
+            this.stylesData = this.constructStyleDropItems(window.documenteditor.ej2Instances.getStyles('Paragraph'));
         },
         createStyle: function () {
             this.$refs.stylesdropdown.hidePopup();
