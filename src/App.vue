@@ -1,5 +1,5 @@
 <template>
-  <seditor />
+  <seditor :defaultDocument="defaultDocument" />
 </template>
 
 <script>
@@ -8,7 +8,8 @@ window.vm = seditor
 export default {
   components:{
     seditor
-  }
+  },
+  props: ["defaultDocument"],
 }
 </script>
 

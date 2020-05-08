@@ -43,10 +43,12 @@ export default {
         isShow: function (newVal, oldVal) {
             this.$refs.headerfooterpropertypane.style.display = newVal ? 'block' : 'none';
             let prop = this;
-            document.getElementById("headerFromTop").addEventListener('keydown', function (e) { headerFooterComp.methods.onHeaderValueChange(e, prop); });
-            document.getElementById("footerFromTop").addEventListener('keydown', function (e) { headerFooterComp.methods.onFooterValueChange(e, prop); });
-            document.getElementById("headerFromTop").addEventListener('blur', function () { headerFooterComp.methods.changeHeaderValue(prop); });
-            document.getElementById("footerFromTop").addEventListener('blur', function () { headerFooterComp.methods.changeFooterValue(prop); });
+            let headerFromTop = document.querySelector("#headerFromTop") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#headerFromTop")
+            let footerFromTop = document.querySelector("#footerFromTop") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#footerFromTop")
+            headerFromTop.addEventListener('keydown', function (e) { headerFooterComp.methods.onHeaderValueChange(e, prop); });
+            footerFromTop.addEventListener('keydown', function (e) { headerFooterComp.methods.onFooterValueChange(e, prop); });
+            headerFromTop.addEventListener('blur', function () { headerFooterComp.methods.changeHeaderValue(prop); });
+            footerFromTop.addEventListener('blur', function () { headerFooterComp.methods.changeFooterValue(prop); });
         }
     },
     data() {
@@ -65,13 +67,16 @@ export default {
     mounted() {
         this.$nextTick(function () {
             this.$refs.headerfooterpropertypane.style.display = 'none';
-            document.getElementById("header_footer_properties_firstPageDiv").setAttribute('title', 'Different header and footer for first page.');
-            document.getElementById("header_footer_properties_oddOrEvenDiv").setAttribute('title', 'Different header and footer for odd and even pages.');
+            let header_footer_properties_firstPageDiv = document.querySelector("#header_footer_properties_firstPageDiv") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#header_footer_properties_firstPageDiv")
+            header_footer_properties_firstPageDiv.setAttribute('title', 'Different header and footer for first page.');
+            let header_footer_properties_oddOrEvenDiv = document.querySelector("#header_footer_properties_oddOrEvenDiv") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#header_footer_properties_oddOrEvenDiv")
+            header_footer_properties_oddOrEvenDiv.setAttribute('title', 'Different header and footer for odd and even pages.');
         });
     },
     methods: {
         onClose: function () {
-            document.getElementById('containerheader_footer_properties').style.display = 'none';
+            let containerheader_footer_properties = document.querySelector("#containerheader_footer_properties") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#containerheader_footer_properties')
+            containerheader_footer_properties.style.display = 'none';
             bus.$emit('showHeaderFooterPane', false);
             window.documenteditor.ej2Instances.selection.closeHeaderFooter();
         },

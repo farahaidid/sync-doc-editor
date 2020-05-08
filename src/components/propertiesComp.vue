@@ -34,7 +34,8 @@ export default {
     },
     methods: {
         showPropertiesPane: function (isShow) {
-            document.getElementById("e-de-properties-pane").style.display = isShow ? 'block' : 'none';
+            let doc = document.querySelector("#e-de-properties-pane") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#e-de-properties-pane")
+            doc.style.display = isShow ? 'block' : 'none';
             window.documenteditor.ej2Instances.resize();
         }
     },

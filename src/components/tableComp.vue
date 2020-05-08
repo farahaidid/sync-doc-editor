@@ -236,7 +236,7 @@ export default {
     mounted() {
         this.$nextTick(function () {
             this.$refs.tablepropertypane.style.display = 'none';
-            this.content0 = document.getElementById("container_tableProperties");
+            this.content0 = document.querySelector("#container_tableProperties") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_tableProperties");
             this.content1 = this.$refs.tableTextProperties;
             this.$refs.tablePropertiesTab.ej2Instances.refresh();
             this.$refs.tableTextProperties.querySelector("#textpropertypane").id = "tableTextPropertyPane";
@@ -247,13 +247,16 @@ export default {
             this.$refs.tableTextProperties.querySelector('#font_color_btn').parentElement.setAttribute('title', 'Font color');
 
             this.$refs.container_tableBorderSize.ej2Instances.element.setAttribute('title', 'Border width');
-            document.getElementById("container_tableShading").parentElement.setAttribute('title', 'Fill color');
-            document.getElementById("container_tableBorderColor").parentElement.setAttribute('title', 'Border color');
+            let container_tableShading = document.querySelector("#container_tableShading") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_tableShading")
+            container_tableShading.parentElement.setAttribute('title', 'Fill color');
+            let container_tableBorderColor = document.querySelector("#container_tableBorderColor") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_tableBorderColor")
+            container_tableBorderColor.parentElement.setAttribute('title', 'Border color');
         });
     },
     methods: {
         showTableProperties: function (isShow) {
-            document.getElementById("container_tableProperties").style.display = isShow ? 'block' : 'none';
+            let doc = document.querySelector("#container_tableProperties") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_tableProperties")
+            doc.style.display = isShow ? 'block' : 'none';
         },
         onOutlineBorder: function () {
             window.documenteditor.ej2Instances.editor.applyBorders(this.getBorder('OutsideBorders'));
@@ -398,10 +401,12 @@ export default {
         },
         openBorderSizePopup: function () {
             this.updateBorderDivColor();
-            document.getElementById("borderSizeTarget").style.display = "block";
+            let doc = document.querySelector("#borderSizeTarget") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#borderSizeTarget")
+            doc.style.display = "block";
         },
         closeBorderSizePopup: function () {
-            document.getElementById("borderSizeTarget").style.display = "none";
+            let borderSizeTarget = document.querySelector("#borderSizeTarget") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#borderSizeTarget")
+            borderSizeTarget.style.display = "none";
         },
         updateBorderDivColor: function () {
             var borderSizeColorElement = document.getElementsByClassName('e-de-border-width');
@@ -414,8 +419,9 @@ export default {
             setTimeout(() => { this.$refs.container_tableOutlineBorder.ej2Instances.element.focus(); }, 10);
         },
         onTabSelection: function () {
-            if (document.getElementById("tableTextPropertyPane") && this.isShow) {
-                document.getElementById("tableTextPropertyPane").style.display = "block";
+            let doc = document.querySelector("#tableTextPropertyPane") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#tableTextPropertyPane")
+            if (doc && this.isShow) {
+                doc.style.display = "block";
             }
             if (vm) {
                 window.documenteditor.ej2Instances.resize();

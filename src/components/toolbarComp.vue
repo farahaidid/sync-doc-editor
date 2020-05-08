@@ -272,7 +272,7 @@ export default {
                     e.target.previousSibling.className += ' ' + 'selection';
                 }
                 // existing = document.getElementsByClassName('selection');
-                // document.getElementById('docText').value = existing[0].id;
+                // document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#docText').value = existing[0].id;
             }
         },
         showCreateNewDocumentdialog: function () {
@@ -302,12 +302,13 @@ export default {
             }
         },
         onUseLocalClipboard: function () {
-            if (window.documenteditor.ej2Instances.enableLocalPaste && document.getElementById('useLocalClipboard').classList.contains('e-btn-toggle')) {
-                document.getElementById('useLocalClipboard').className = 'e-tbar-btn e-tbtn-txt e-control e-btn';
+            let doc = document.querySelector('#useLocalClipboard') || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#useLocalClipboard')
+            if (window.documenteditor.ej2Instances.enableLocalPaste && doc.classList.contains('e-btn-toggle')) {
+                doc.className = 'e-tbar-btn e-tbtn-txt e-control e-btn';
                 window.documenteditor.ej2Instances.enableLocalPaste = false;
             } else {
                 window.documenteditor.ej2Instances.enableLocalPaste = true;
-                document.getElementById('useLocalClipboard').className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
+                doc.className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
             }
             window.documenteditor.ej2Instances.focusIn();
         },
@@ -316,7 +317,8 @@ export default {
                 window.documenteditor.ej2Instances.focusIn();
                 return;
             }
-            if (document.getElementById("containerheader_footer_properties").style.display === 'block') {
+            let containerheader_footer_properties = document.querySelector("#containerheader_footer_properties") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#containerheader_footer_properties")
+            if (containerheader_footer_properties.style.display === 'block') {
                 window.documenteditor.ej2Instances.selection.closeHeaderFooter();
             }
             this.enableDisablePropertyPaneButton(false);
@@ -347,44 +349,76 @@ export default {
         enableIcons: function () {
             window.documenteditor.ej2Instances.isReadOnly = false;
             this.updateUndoRedoBtn();
-            this.$refs.de_toolbar.enableItems(document.getElementById('image').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('table').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('link').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('bookmark').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('toc').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('header').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('footer').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('pagesetup').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('pagenumber').parentElement, true);
-            this.$refs.de_toolbar.enableItems(document.getElementById('useLocalClipboard').parentElement, true);
-            document.getElementById('showHidePane').parentElement.className = '';
-            document.getElementById('restrictEdit').className = 'e-tbar-btn e-tbtn-txt e-control e-btn';
-            document.getElementById('useLocalClipboard').className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
+            
+            let image = document.querySelector("#image") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#image')
+            let table = document.querySelector("#table") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#table')
+            let link = document.querySelector("#link") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#link')
+            let bookmark = document.querySelector("#bookmark") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#bookmark')
+            let toc = document.querySelector("#toc") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#toc')
+            let header = document.querySelector("#header") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#header')
+            let footer = document.querySelector("#footer") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#footer')
+            let pagesetup = document.querySelector("#pagesetup") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagesetup')
+            let pagenumber = document.querySelector("#pagenumber") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagenumber')
+            let useLocalClipboard = document.querySelector("#useLocalClipboard") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#useLocalClipboard')
+
+            this.$refs.de_toolbar.enableItems(image.parentElement, true);
+            this.$refs.de_toolbar.enableItems(table.parentElement, true);
+            this.$refs.de_toolbar.enableItems(link.parentElement, true);
+            this.$refs.de_toolbar.enableItems(bookmark.parentElement, true);
+            this.$refs.de_toolbar.enableItems(toc.parentElement, true);
+            this.$refs.de_toolbar.enableItems(header.parentElement, true);
+            this.$refs.de_toolbar.enableItems(footer.parentElement, true);
+            this.$refs.de_toolbar.enableItems(pagesetup.parentElement, true);
+            this.$refs.de_toolbar.enableItems(pagenumber.parentElement, true);
+            this.$refs.de_toolbar.enableItems(useLocalClipboard.parentElement, true);
+
+            let showHidePane = document.querySelector("#showHidePane") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#showHidePane')
+            showHidePane.parentElement.className = '';
+            let restrictEdit = document.querySelector("#restrictEdit") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#restrictEdit')
+            restrictEdit.className = 'e-tbar-btn e-tbtn-txt e-control e-btn';
+            
+            useLocalClipboard.className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
             this.showPropertiesPane = true;
             this.showPropertiesPaneOnSelection();
         },
         disableIcons: function () {
             window.documenteditor.ej2Instances.isReadOnly = true;
-            this.$refs.de_toolbar.enableItems(document.getElementById('undo').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('redo').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('image').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('table').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('link').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('bookmark').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('toc').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('header').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('footer').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('pagesetup').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('pagenumber').parentElement, false);
-            this.$refs.de_toolbar.enableItems(document.getElementById('useLocalClipboard').parentElement, false);
+            
+            let undo = document.querySelector("#undo") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#undo')
+            let redo = document.querySelector("#redo") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#redo')
+            let image = document.querySelector("#image") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#image')
+            let table = document.querySelector("#table") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#table')
+            let link = document.querySelector("#link") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#link')
+            let bookmark = document.querySelector("#bookmark") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#bookmark')
+            let toc = document.querySelector("#toc") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#toc')
+            let header = document.querySelector("#header") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#header')
+            let footer = document.querySelector("#footer") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#footer')
+            let pagesetup = document.querySelector("#pagesetup") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagesetup')
+            let pagenumber = document.querySelector("#pagenumber") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagenumber')
+            let useLocalClipboard = document.querySelector("#useLocalClipboard") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#useLocalClipboard')
+            
+            this.$refs.de_toolbar.enableItems(undo.parentElement, false);
+            this.$refs.de_toolbar.enableItems(redo.parentElement, false);
+            this.$refs.de_toolbar.enableItems(image.parentElement, false);
+            this.$refs.de_toolbar.enableItems(table.parentElement, false);
+            this.$refs.de_toolbar.enableItems(link.parentElement, false);
+            this.$refs.de_toolbar.enableItems(bookmark.parentElement, false);
+            this.$refs.de_toolbar.enableItems(toc.parentElement, false);
+            this.$refs.de_toolbar.enableItems(header.parentElement, false);
+            this.$refs.de_toolbar.enableItems(footer.parentElement, false);
+            this.$refs.de_toolbar.enableItems(pagesetup.parentElement, false);
+            this.$refs.de_toolbar.enableItems(pagenumber.parentElement, false);
+            this.$refs.de_toolbar.enableItems(useLocalClipboard.parentElement, false);
             propertiesComp.methods.showPropertiesPane(false);
             this.showPropertiesPane = false;
-            document.getElementById('showHidePane').parentElement.className = 'e-overlay';
-            document.getElementById('restrictEdit').className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
+            let showHidePane = document.querySelector("#showHidePane") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#showHidePane')
+            showHidePane.parentElement.className = 'e-overlay';
+            let restrictEdit = document.querySelector("#restrictEdit") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#restrictEdit')
+            restrictEdit.className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
         },
         updateUndoRedoBtn: function () {
-            let undo = document.getElementById('undo');
-            let redo = document.getElementById('redo');
+            let undo = document.querySelector('#undo') || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#undo')
+            let redo = document.querySelector('#redo') || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#redo')
             if (!isNullOrUndefined(window.documenteditor.ej2Instances.editorHistory) && window.documenteditor.ej2Instances.editorHistory.canUndo()) {
                 this.$refs.de_toolbar.enableItems(undo.parentElement, true);
             } else {
@@ -406,7 +440,8 @@ export default {
                 return;
             }
             if (!isInHeaderFooter) {
-                if (document.getElementById("containerheader_footer_properties").style.display === 'block') {
+                let containerheader_footer_properties = document.querySelector("#containerheader_footer_properties") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#containerheader_footer_properties")
+                if (containerheader_footer_properties.style.display === 'block') {
                     propertiesComp.methods.showPropertiesPane(false);
                     window.documenteditor.ej2Instances.selection.closeHeaderFooter();
                 }
@@ -478,10 +513,11 @@ export default {
             }
         },
         onPropertyPaneClick: function () {
+            let tocpropertypane = document.querySelector("#tocpropertypane") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#tocpropertypane")
             if (this.previousContext === 'TableOfContents' && this.showPropertiesPane) {
                 window.documenteditor.focusIn();
                 return;
-            } else if (document.getElementById("tocpropertypane").style.display === 'block' && this.showPropertiesPane) {
+            } else if (tocpropertypane.style.display === 'block' && this.showPropertiesPane) {
                 this.enableDisablePropertyPaneButton(true);
                 this.showPropertiesPaneOnSelection();
                 return;
@@ -508,24 +544,30 @@ export default {
     },
     mounted() {
         this.$nextTick(function () {
-            vm.toolBarHeight = document.getElementById('documenteditor_toolbar').offsetHeight;
+            let documenteditor_toolbar = document.querySelector("#documenteditor_toolbar") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#documenteditor_toolbar')
+            let toc = document.querySelector("#toc") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#toc')
+            let pagesetup = document.querySelector("#pagesetup") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagesetup')
+            let pagenumber = document.querySelector("#pagenumber") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#pagenumber')
+            let useLocalClipboard = document.querySelector("#useLocalClipboard") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#useLocalClipboard')
+            let restrictEdit = document.querySelector("#restrictEdit") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#restrictEdit')
+            vm.toolBarHeight = documenteditor_toolbar.offsetHeight;
             this.$refs.de_toolbar.ej2Instances.element.style.border = "none";
             this.$refs.de_toolbar.ej2Instances.element.style.padding = "6px";
             this.$refs.de_toolbar.ej2Instances.element.style.width = 'calc(100% - 6%)';
             this.$refs.de_toolbar.ej2Instances.element.style.height = "auto";
-            var tocElement = document.getElementById('toc').getElementsByTagName('div')[0];
+            var tocElement = toc.getElementsByTagName('div')[0];
             this.onTextWrapTOCButton(tocElement);
-            var pageSetupElement = document.getElementById('pagesetup').getElementsByTagName('div')[0];
+            var pageSetupElement = pagesetup.getElementsByTagName('div')[0];
             this.onTextWrap(pageSetupElement);
-            var pageNumberElement = document.getElementById('pagenumber').getElementsByTagName('div')[0];
+            var pageNumberElement = pagenumber.getElementsByTagName('div')[0];
             this.onTextWrap(pageNumberElement);
-            var localClipboardElement = document.getElementById('useLocalClipboard').getElementsByTagName('div')[0];
+            var localClipboardElement = useLocalClipboard.getElementsByTagName('div')[0];
             this.onTextWrap(localClipboardElement);
-            var restrictEditElement = document.getElementById('restrictEdit').getElementsByTagName('div')[0];
+            var restrictEditElement = restrictEdit.getElementsByTagName('div')[0];
             this.onTextWrap(restrictEditElement);
             this.updateUndoRedoBtn();
             window.documenteditor.ej2Instances.enableLocalPaste = true;
-            document.getElementById('useLocalClipboard').className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
+            useLocalClipboard.className = 'e-tbar-btn e-tbtn-txt e-control e-btn e-btn-toggle';
         });
     }
 }

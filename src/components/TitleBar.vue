@@ -1,6 +1,6 @@
 <template>
   <div ref="de_titlebar" id="documenteditor_titlebar">
-    <div class="single-line" id="documenteditor_title_contentEditor" style="border: 1px solid #2B3481;" title="Document Name. Click or tap to rename this document." contenteditable="false">
+    <div class="single-line" ref="documenteditor_title_contentEditor" id="documenteditor_title_contentEditor" style="border: 1px solid #2B3481;" title="Document Name. Click or tap to rename this document." contenteditable="false">
         <label id="documenteditor_title_name" :style="titileStyle" >{{documentName}}</label>
     </div>    
     <ejs-button id="de-print" :style="iconStyle" :iconCss="printIconCss" v-on:click.native="printBtnClick" title="Print this document (Ctrl+P).">Print</ejs-button>
@@ -38,9 +38,11 @@ export default {
         },
         openExportDropDown: function () {
             // tslint:disable-next-line:max-line-length
-            document.getElementById('word').setAttribute('title', 'Download a copy of this document to your computer as a DOCX file.');
+            let word = document.querySelector("#word") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#word')
+            word.setAttribute('title', 'Download a copy of this document to your computer as a DOCX file.');
             // tslint:disable-next-line:max-line-length
-            document.getElementById('sfdt').setAttribute('title', 'Download a copy of this document to your computer as an SFDT file.');
+            let sfdt = document.querySelector('#sfdt') || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#sfdt')
+            sfdt.setAttribute('title', 'Download a copy of this document to your computer as an SFDT file.');
         },
         save: function (format) {
             // tslint:disable-next-line:max-line-length
@@ -55,36 +57,37 @@ export default {
         titleBarKeydownEvent: function (e) {
             if (e.keyCode === 13) {
                 e.preventDefault();
-                document.getElementById("documenteditor_title_contentEditor").contentEditable = 'false';
-                if (document.getElementById("documenteditor_title_contentEditor").textContent === '') {
-                    document.getElementById("documenteditor_title_contentEditor").textContent = 'Document1';
+                this.$refs.documenteditor_title_contentEditor.contentEditable = 'false';
+                if (this.$refs.documenteditor_title_contentEditor.textContent === '') {
+                    this.$refs.documenteditor_title_contentEditor.textContent = 'Document1';
                 }
             }
         },
         titleBarBlurEvent: function (args) {
-            if (document.getElementById("documenteditor_title_contentEditor").textContent === '') {
-                document.getElementById("documenteditor_title_contentEditor").textContent = 'Document1';
+            if (this.$refs.documenteditor_title_contentEditor.textContent === '') {
+                this.$refs.documenteditor_title_contentEditor.textContent = 'Document1';
             }
-            document.getElementById("documenteditor_title_contentEditor").contentEditable = 'false';
-            window.documenteditor.ej2Instances.documentName = document.getElementById("documenteditor_title_name").textContent;
+            this.$refs.documenteditor_title_contentEditor.contentEditable = 'false';
+            let doc = document.querySelector("#documenteditor_title_name") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#documenteditor_title_name")
+            window.documenteditor.ej2Instances.documentName = doc.textContent;
         },
         titleBarClickEvent: function () {
             this.updateDocumentEditorTitle();
         },
         updateDocumentEditorTitle: function () {
-            document.getElementById("documenteditor_title_contentEditor").contentEditable = 'true';
-            document.getElementById("documenteditor_title_contentEditor").focus();
-            window.getSelection().selectAllChildren(document.getElementById("documenteditor_title_contentEditor"));
+            this.$refs.documenteditor_title_contentEditor.contentEditable = 'true';
+            this.$refs.documenteditor_title_contentEditor.focus();
+            window.getSelection().selectAllChildren(this.$refs.documenteditor_title_contentEditor);
         }
     },
     mounted() {
-        this.$nextTick(function () {
-            vm.titleBarHeight = document.getElementById('documenteditor_titlebar').offsetHeight;
-        });
         let _this = this
-        document.getElementById("documenteditor_title_contentEditor").addEventListener('keydown', function (e) { _this.titleBarKeydownEvent(e); });
-        document.getElementById("documenteditor_title_contentEditor").addEventListener('blur', function () { _this.titleBarBlurEvent(); });
-        document.getElementById("documenteditor_title_contentEditor").addEventListener('click', function () { _this.titleBarClickEvent(); });
+        this.$nextTick(function () {
+            vm.titleBarHeight = _this.$refs.de_titlebar.offsetHeight;
+        });
+        this.$refs.documenteditor_title_contentEditor.addEventListener('keydown', function (e) { _this.titleBarKeydownEvent(e); });
+        this.$refs.documenteditor_title_contentEditor.addEventListener('blur', function () { _this.titleBarBlurEvent(); });
+        this.$refs.documenteditor_title_contentEditor.addEventListener('click', function () { _this.titleBarClickEvent(); });
     }
 }
 </script>

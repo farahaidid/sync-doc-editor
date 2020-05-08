@@ -1,18 +1,22 @@
 <template>
-  <div ref="paragraphproperties">
+    <div ref="paragraphproperties">
         <div id="font_properties_paragraph" style="padding:10px;">
-        <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
-        <div id="font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
-        <ejs-dropdownlist ref="stylesdropdown" id="font_properties_style" style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;padding-left:10px;"
-        :dataSource="stylesData"
-        cssClass="e-de-prop-dropdown"
-                :fields="stylefields"
-                :footerTemplate="stylefootertemplate"             
-                :itemTemplate="styleItemTemplate"
-                :open="updateOptions"
-                :query="styleQuery"
-                :change="selectStyleValue"
-                :close="closeStyleValue"></ejs-dropdownlist>        	
+            <label class="e-de-prop-label" style="width:26px;">Paragraph</label>
+            <div id="font_properties_styleDiv" style="margin-bottom: 8px;" title="Styles">
+                <ejs-dropdownlist 
+                    ref="stylesdropdown" 
+                    id="font_properties_style" 
+                    style="width:248px;font-size: 12px;color: #000000;letter-spacing: 0.05px;padding-left:10px;"
+                    :dataSource="stylesData"
+                    cssClass="e-de-prop-dropdown"
+                    :fields="stylefields"
+                    :footerTemplate="stylefootertemplate"             
+                    :itemTemplate="styleItemTemplate"
+                    :open="updateOptions"
+                    :query="styleQuery"
+                    :change="selectStyleValue"
+                    :close="closeStyleValue"
+                />
             </div>
             <div id="font_properties_indentWholeDiv" style="display: flex;">
                 <div id="font_properties_indentDiv" style="width:164px;height:32px;display:flex;" class="e-de-prop-div-left e-btn-group">
@@ -27,126 +31,125 @@
                 </div>
             </div>
             <div id="font_properties_listDiv" style="margin-top:8px;display:flex;">
-            <ejs-dropdownbutton :items="lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton" :select="lineSpacingAction" :beforeItemRender="updateLastSelectedItem" title="Line spacing"></ejs-dropdownbutton>
-            <div id="font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
-            <ejs-splitbutton id="bullet_list_btn" ref="bullets" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton"  :close="closeBullets" :beforeOpen="openBullets" target="#bullet_list" title="Bullets" :click="bulletSplitObjClick" ></ejs-splitbutton>
-                <div  ref="bulletsElement" id="bullet_list" style="width: 198px; height: auto; display: none;">
-                    <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
-                        <li ref = "none" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-none"/>
+                <ejs-dropdownbutton :items="lineHeight" iconCss="e-de-icon-LineSpacing" cssClass="e-de-prop-splitbutton" :select="lineSpacingAction" :beforeItemRender="updateLastSelectedItem" title="Line spacing"></ejs-dropdownbutton>
+                <div id="font_properties_listDropDiv" class="de-split-button" style="padding-left: 10px;">
+                    <ejs-splitbutton id="bullet_list_btn" ref="bullets" iconCss="e-de-icon-Bullets" cssClass="e-de-prop-splitbutton"  :close="closeBullets" :beforeOpen="openBullets" target="#bullet_list" title="Bullets" :click="bulletSplitObjClick" ></ejs-splitbutton>
+                        <div  ref="bulletsElement" id="bullet_list" style="width: 198px; height: auto; display: none;">
+                            <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
+                                <li ref = "none" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-none"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "dot" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-dot"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "circle" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-circle"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "square" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-square"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "flower" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-flower"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "arrow" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-arrow"/>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li ref = "tick" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
+                                    <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
+                                        <div>
+                                            <span class="e-de-icon-bullet-tick"/>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>                    
+                    <ejs-splitbutton  id="number_list_btn" ref="numberings" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" :beforeClose="closeNumbering" :beforeOpen="openNumbering" target="#numbering_list"  title="Numbering" :click="numberingSplitObjClick"/>
+                    <div ref="numberingElement" id="numbering_list" style="width: 213px; height: auto;">
+                        <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
+                            <li  ref = "numberedNone" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block;padding:0px !important">
+                                <div class="ui-list-header-presetmenu e-de-list-items-size" id="ui-zlist0">
+                                    <div class="e-de-list-items-size">
+                                        <span class="ui-bullets e-de-list-items-size" style="display:table-cell; text-align: center; vertical-align:middle">None</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "dot" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-dot"/>
+                            </li>
+                            <li ref = "numberedDot" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
+                                <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                    <div>1.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>2.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>3.<span class="ui-list-line"> </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "circle" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-circle"/>
+                            </li>
+                            <li  ref = "numberedLowLetter" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
+                                <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                    <div>a.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>b.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>c.<span class="ui-list-line"> </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "square" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-square"/>
+                            </li>
+                            <li  ref = "numberedUpLetter" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
+                                <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                    <div>A.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>B.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>C.<span class="ui-list-line"> </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "flower" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-flower"/>
+                            </li>
+                            <li  ref = "numberedLowRoman" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
+                                <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                    <div>i.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>ii.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>iii.<span class="ui-list-line"> </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "arrow" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-arrow"/>
+                            </li>
+                            <li  ref = "numberedUpRoman" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
+                                <div class="ui-list-header-presetmenu" id="ui-zlist0">
+                                    <div>I.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>II.<span class="ui-list-line"/>
+                                    </div>
+                                    <div>III.<span class="ui-list-line"> </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li ref = "tick" class="ui-wfloating-menuitem ui-wfloating-bullet-menuitem-md de-list-items  de-list-item-size" style="display:block;">
-                            <div class="ui-bullet-list-header-presetmenu" id="ui-zlist0">
-                                <div>
-                                    <span class="e-de-icon-bullet-tick"/>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>                    
-            <ejs-splitbutton  id="number_list_btn" ref="numberings" iconCss="e-de-icon-Numbering" cssClass="e-de-prop-splitbutton" :beforeClose="closeNumbering" :beforeOpen="openNumbering" target="#numbering_list"  title="Numbering" :click="numberingSplitObjClick"/>
-                <div ref="numberingElement" id="numbering_list" style="width: 213px; height: auto;">
-                    <ul class="ui-wfloating-menu ui-bullets-menu de-list-container de-list-thumbnail" id="listMenu" style="display: block; outline: 0px;">
-                        <li  ref = "numberedNone" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block;padding:0px !important">
-                            <div class="ui-list-header-presetmenu e-de-list-items-size" id="ui-zlist0">
-                                <div class="e-de-list-items-size">
-                                    <span class="ui-bullets e-de-list-items-size" style="display:table-cell; text-align: center; vertical-align:middle">None</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li ref = "numberedDot" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
-                            <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                <div>1.<span class="ui-list-line"/>
-                                </div>
-                                <div>2.<span class="ui-list-line"/>
-                                </div>
-                                <div>3.<span class="ui-list-line"> </span>
-                                </div>
-                            </div>
-                        </li>
-                        <li  ref = "numberedLowLetter" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
-                            <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                <div>a.<span class="ui-list-line"/>
-                                </div>
-                                <div>b.<span class="ui-list-line"/>
-                                </div>
-                                <div>c.<span class="ui-list-line"> </span>
-                                </div>
-                            </div>
-                        </li>
-                        <li  ref = "numberedUpLetter" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
-                            <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                <div>A.<span class="ui-list-line"/>
-                                </div>
-                                <div>B.<span class="ui-list-line"/>
-                                </div>
-                                <div>C.<span class="ui-list-line"> </span>
-                                </div>
-                            </div>
-                        </li>
-                        <li  ref = "numberedLowRoman" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
-                            <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                <div>i.<span class="ui-list-line"/>
-                                </div>
-                                <div>ii.<span class="ui-list-line"/>
-                                </div>
-                                <div>iii.<span class="ui-list-line"> </span>
-                                </div>
-                            </div>
-                        </li>
-                        <li  ref = "numberedUpRoman" class="ui-wfloating-menuitem ui-wfloating-menuitem-md de-list-items  de-list-item-size" style="display:block">
-                            <div class="ui-list-header-presetmenu" id="ui-zlist0">
-                                <div>I.<span class="ui-list-line"/>
-                                </div>
-                                <div>II.<span class="ui-list-line"/>
-                                </div>
-                                <div>III.<span class="ui-list-line"> </span>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>                
-        </div>     
-
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -204,7 +207,6 @@ export default {
             args.popup.element.getElementsByClassName('create-style-footer')[0].addEventListener('click', this.createStyle);
         },
         selectStyleValue: function (args) {
-
             if (this.isRetrieving || !args.isInteracted) {
                 return;
             }

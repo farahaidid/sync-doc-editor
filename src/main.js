@@ -4,11 +4,11 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
-
+import doc from "./dfas.json"
 const vm = new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App, {props: {defaultDocument : doc}})
 }).$mount('#app')
 
 

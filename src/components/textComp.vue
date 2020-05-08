@@ -402,15 +402,19 @@ export default {
     },
     mounted() {
         this.$nextTick(function () {
-            let leftDiv2 = document.getElementById("font_properties_color");
+            let leftDiv2 = document.querySelector("#font_properties_color") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#font_properties_color")
             leftDiv2.firstElementChild.lastElementChild.lastElementChild.firstChild.classList.add('e-de-icon-FontColor', 'e-font-icons');
 
             this.$refs.highlightcolor.$el.nextElementSibling.firstElementChild.classList.add('e-de-icon-HighlightColor');
             this.highlightColorInputElement = this.$refs.highlightcolor.$el.firstChild;
-            document.getElementById('highlightcolor').parentElement.setAttribute('title', 'Text highlight color');
-            document.getElementById('bullet_list_btn').parentElement.setAttribute('title', 'Bullets');
-            document.getElementById('number_list_btn').parentElement.setAttribute('title', 'Numbering');
-            document.getElementById('font_color_btn').parentElement.setAttribute('title', 'Font color');
+            let highlightcolor = document.querySelector('#highlightcolor') || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#highlightcolor')
+            highlightcolor.parentElement.setAttribute('title', 'Text highlight color');
+            let bullet_list_btn = document.querySelector("#bullet_list_btn") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#bullet_list_btn')
+            bullet_list_btn.parentElement.setAttribute('title', 'Bullets');
+            let number_list_btn = document.querySelector("#number_list_btn") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#number_list_btn')
+            number_list_btn.parentElement.setAttribute('title', 'Numbering');
+            let font_color_btn = document.querySelector("#font_color_btn") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector('#font_color_btn')
+            font_color_btn.parentElement.setAttribute('title', 'Font color');
             this.wireEvent();
         });
     }

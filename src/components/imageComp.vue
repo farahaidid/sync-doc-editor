@@ -42,10 +42,12 @@ export default {
         isShow: function (newVal, oldVal) {
             this.$refs.imagepropertypane.style.display = newVal ? 'block' : 'none';
             let prop = this;
-            document.getElementById("container_widthInput").addEventListener('keydown', function (e) { imageComp.methods.onImageWidthChange(e, prop); });
-            document.getElementById("container_heightInput").addEventListener('keydown', function (e) { imageComp.methods.onImageHeightChange(e, prop); });
-            document.getElementById("container_widthInput").addEventListener('blur', function () { imageComp.methods.applyImageWidth(prop); });
-            document.getElementById("container_heightInput").addEventListener('blur', function () { imageComp.methods.applyImageHeight(prop); });
+            let container_widthInput = document.querySelector("#container_widthInput") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_widthInput")
+            let container_heightInput = document.querySelector("#container_heightInput") || document.getElementsByTagName("document-editor")[0].shadowRoot.querySelector("#container_heightInput")
+            container_widthInput.addEventListener('keydown', function (e) { imageComp.methods.onImageWidthChange(e, prop); });
+            container_heightInput.addEventListener('keydown', function (e) { imageComp.methods.onImageHeightChange(e, prop); });
+            container_widthInput.addEventListener('blur', function () { imageComp.methods.applyImageWidth(prop); });
+            container_heightInput.addEventListener('blur', function () { imageComp.methods.applyImageHeight(prop); });
             if (newVal)
                 this.updateImageProperties();
         }
